@@ -64,10 +64,10 @@ body {
 
 #self-name {
     border-radius: 5px 5px 0 0;
+    font-size: smaller;
 }
 
 #self-msg {
-    font-size: small;
     background-color: #0d0d0d;
     color: #fef9f8;
     border-radius: 5px 0 5px 5px;
@@ -90,10 +90,10 @@ body {
 
 #other-name {
     border-radius: 5px 5px 0 0;
+    font-size: smaller;
 }
 
 #other-msg {
-    font-size: small;
     background-color: #0d0d0d;
     color: #fef9f8;
     border-radius: 0 5px 5px 5px;
@@ -153,4 +153,3 @@ body {
     width: 50px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
-

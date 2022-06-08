@@ -6,6 +6,8 @@ const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 
+const PORT = process.env.PORT || 3000;
+
 
 const users = {};
 
@@ -21,6 +23,7 @@ io.on("connection", (socket) => {
 
         console.log(name + " connected");
 
+        socket.emit('self-joined', name);
         socket.broadcast.emit('user-joined', name);
     });
 
@@ -40,6 +43,6 @@ io.on("connection", (socket) => {
 
 
 // LISTEN
-server.listen("3000", () => {
+server.listen(PORT, () => {
     console.log("Server is running on port 3000");
 });

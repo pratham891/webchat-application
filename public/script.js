@@ -6,12 +6,38 @@ const input = document.querySelector("#input");
 
 
 let name = prompt("Your name");
+const infinity = Math.pow(10, 1000);
 
 
 
 
 // sending event to app.js when new user has joined
 socket.emit('new-user-joined', name);
+
+
+
+
+
+
+// receiving event from app.js when joined the chat
+socket.on('self-joined', name => {
+    let newNotif = document.createElement("div");
+    newNotif.classList.add("msgs");
+    newNotif.classList.add("updates");
+    chatDisplay.appendChild(newNotif);
+
+    let pInNotif = document.createElement("p");
+    pInNotif.innerHTML = "You joined as " + "\"" + name + "\"";
+    newNotif.appendChild(pInNotif);
+
+    chatDisplay.scrollTo(0, chatDisplay.scrollHeight);
+});
+
+
+
+
+
+
 
 
 
@@ -23,9 +49,19 @@ socket.on('user-joined', name => {
     chatDisplay.appendChild(newNotif);
 
     let pInNotif = document.createElement("p");
-    pInNotif.innerHTML = name + " joined";
+    pInNotif.innerHTML = "\"" + name + "\"" + " joined";
     newNotif.appendChild(pInNotif);
+
+    chatDisplay.scrollTo(0, chatDisplay.scrollHeight);
 });
+
+
+
+
+
+
+
+
 
 
 
@@ -54,6 +90,7 @@ form.addEventListener('submit', function (e) {
     newSelfMsg.appendChild(pInNewSelfMsg);
 
     input.value = "";
+    chatDisplay.scrollTo(0, chatDisplay.scrollHeight);
 });
 
 
@@ -74,6 +111,8 @@ socket.on('msg-receive', data => {
     pInNewMsg.setAttribute("id", "other-msg");
     pInNewMsg.textContent = data.message;
     newMsg.appendChild(pInNewMsg);
+
+    chatDisplay.scrollTo(0, chatDisplay.scrollHeight);
 });
 
 
@@ -88,5 +127,7 @@ socket.on('user-disconnected', (name) => {
     let pInNotif = document.createElement("p");
     pInNotif.innerHTML = name + " disconnected";
     newNotif.appendChild(pInNotif);
+
+    chatDisplay.scrollTo(0, chatDisplay.scrollHeight);
 });
 
