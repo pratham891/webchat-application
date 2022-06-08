@@ -1,13 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     list-style-type: none;
     text-decoration: none;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    background: linear-gradient(to right top, rgb(30, 24, 59), rgb(25, 22, 53));
+    background-color: #ef9273;
     height: 100vh;
     width: 100vw;
     overflow: hidden;
@@ -17,7 +20,6 @@ body {
 }
 
 #container {
-    background-color: white;
     height: 500px;
     width: 800px;
     display: flex;
@@ -25,11 +27,15 @@ body {
 }
 
 #chat-display {
-    height: 400px;
+    height: 450px;
     width: 800px;
+    background-color: #fef9f8;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
 .msgs {
@@ -41,33 +47,110 @@ body {
 .msgs p {
     padding: 2px 5px;
     max-width: 700px;
-    background-color: gray;
     word-wrap: break-word;
 }
 
+
+
+
+
+
+/* right side msg styling */
 .self {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
 }
 
+#self-name {
+    border-radius: 5px 5px 0 0;
+}
+
+#self-msg {
+    font-size: small;
+    background-color: #0d0d0d;
+    color: #fef9f8;
+    border-radius: 5px 0 5px 5px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+
+
+
+
+
+
+
+/* left side msg styling */
 .other {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
+#other-name {
+    border-radius: 5px 5px 0 0;
+}
+
+#other-msg {
+    font-size: small;
+    background-color: #0d0d0d;
+    color: #fef9f8;
+    border-radius: 0 5px 5px 5px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+
+
+
+
+
+
+
+
+
+/* centre side msg styling */
 .updates {
+    height: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+.updates p {
+    font-size: small;
+    background-color: #ef9273;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+
+
+
+
+
+
+
+
 #sender-display {
-    height: 100px;
+    height: 50px;
     padding: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#input {
+    padding: 5px;
+    height: 30px;
+    width: 700px;
+    border-radius: 5px;
+    border: 0;
+}
+
+#send-button {
+    height: 30px;
+    width: 50px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
