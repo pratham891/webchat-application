@@ -37,7 +37,7 @@ form.addEventListener('submit', function (e) {
 
     // sending event to app.js on submitting the form (send msg)
     socket.emit('msg-sent', input.value);
-    
+
     let newSelfMsg = document.createElement("div");
     newSelfMsg.classList.add("msgs");
     newSelfMsg.classList.add("self");
@@ -47,7 +47,7 @@ form.addEventListener('submit', function (e) {
     nameSelfMsg.setAttribute("id", "self-name");
     nameSelfMsg.textContent = name;
     newSelfMsg.appendChild(nameSelfMsg);
-    
+
     let pInNewSelfMsg = document.createElement("p");
     pInNewSelfMsg.setAttribute("id", "self-msg");
     pInNewSelfMsg.textContent = input.value;
@@ -75,3 +75,18 @@ socket.on('msg-receive', data => {
     pInNewMsg.textContent = data.message;
     newMsg.appendChild(pInNewMsg);
 });
+
+
+
+// receiving event from app.js when new user disconnects
+socket.on('user-disconnected', (name) => {
+    let newNotif = document.createElement("div");
+    newNotif.classList.add("msgs");
+    newNotif.classList.add("updates");
+    chatDisplay.appendChild(newNotif);
+
+    let pInNotif = document.createElement("p");
+    pInNotif.innerHTML = name + " disconnected";
+    newNotif.appendChild(pInNotif);
+});
+

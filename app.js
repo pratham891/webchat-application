@@ -19,11 +19,22 @@ io.on("connection", (socket) => {
     socket.on('new-user-joined', name => {
         users[socket.id] = name;
 
+        console.log(name + " connected");
+
         socket.broadcast.emit('user-joined', name);
     });
 
     socket.on('msg-sent', message => {
         socket.broadcast.emit('msg-receive', {name: users[socket.id], message: message});
+    });
+
+    socket.on("disconnect", () => {
+        socket.broadcast.emit('user-disconnected', users[socket.id]);
+
+        console.log(users[socket.id] + " Disconnected");
+        delete users[socket.id];
+        console.log("updated users:");
+        console.log(users);
     });
 });
 
