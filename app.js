@@ -21,6 +21,10 @@ io.on("connection", (socket) => {
 
         socket.broadcast.emit('user-joined', name);
     });
+
+    socket.on('msg-sent', message => {
+        socket.broadcast.emit('msg-receive', {name: users[socket.id], message: message});
+    });
 });
 
 

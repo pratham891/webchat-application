@@ -13,7 +13,7 @@
 <body>
     <div id="container">
         <div id="chat-display">
-            <div class="msgs updates">
+            <!-- <div class="msgs updates">
                 <p>pratham connected</p>
             </div>
             <div class="msgs self">
@@ -23,24 +23,23 @@
             <div class="msgs other">
                 <p id="other-name">Other: </p>
                 <p>Hii, this is the other person</p>
-            </div>
+            </div> -->
         </div>
 
         <div id="sender-display">
-            <form action="/" method="post">
-                <textarea name="text-area" id="text-input" cols="80" rows="5"
-                    placeholder="your message goes here"></textarea>
-
+            <form id="send-msg">
+                <input type="text" id="input">
                 <input type="submit" value="Send">
             </form>
         </div>
     </div>
 
 
-    
+
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="script.js"></script>
 </body>
 
 </html>
+
