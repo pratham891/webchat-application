@@ -23,20 +23,29 @@ io.on("connection", (socket) => {
 
         console.log(name + " connected");
 
-        socket.emit('self-joined', name);
-        socket.broadcast.emit('user-joined', name);
+        socket.emit('self-joined', {
+            name: name,
+            activeUsers: Object.keys(users).length
+        });
+        socket.broadcast.emit('user-joined', {
+            name: name,
+            activeUsers: Object.keys(users).length
+        });
     });
 
     socket.on('msg-sent', message => {
-        socket.broadcast.emit('msg-receive', {name: users[socket.id], message: message});
+        socket.broadcast.emit('msg-receive', { name: users[socket.id], message: message });
     });
 
     socket.on("disconnect", () => {
-        socket.broadcast.emit('user-disconnected', users[socket.id]);
-
+        socket.broadcast.emit('who-disconnected', users[socket.id]);
         console.log(users[socket.id] + " Disconnected");
+
         delete users[socket.id];
-        console.log("updated users:");
+
+        socket.broadcast.emit('user-disconnected', Object.keys(users).length);
+
+        console.log("updated users list:");
         console.log(users);
     });
 });

@@ -8,6 +8,10 @@ const input = document.querySelector("#input");
 let name = prompt("Your name");
 const infinity = Math.pow(10, 1000);
 
+let newDiv = document.createElement("div");
+container.insertBefore(newDiv, chatDisplay);
+newDiv.style.padding = "5px";
+
 
 
 
@@ -20,14 +24,19 @@ socket.emit('new-user-joined', name);
 
 
 // receiving event from app.js when joined the chat
-socket.on('self-joined', name => {
+socket.on('self-joined', data => {
+    newDiv.innerHTML = "Active Users: " + data.activeUsers;
+
+
+
+
     let newNotif = document.createElement("div");
     newNotif.classList.add("msgs");
     newNotif.classList.add("updates");
     chatDisplay.appendChild(newNotif);
 
     let pInNotif = document.createElement("p");
-    pInNotif.innerHTML = "You joined as " + "\"" + name + "\"";
+    pInNotif.innerHTML = "You joined as " + "\"" + data.name + "\"";
     newNotif.appendChild(pInNotif);
 
     chatDisplay.scrollTo(0, chatDisplay.scrollHeight);
@@ -42,14 +51,16 @@ socket.on('self-joined', name => {
 
 
 // receiving event from app.js when new user joined
-socket.on('user-joined', name => {
+socket.on('user-joined', data => {
+    newDiv.innerHTML = "Active Users: " + data.activeUsers;
+
     let newNotif = document.createElement("div");
     newNotif.classList.add("msgs");
     newNotif.classList.add("updates");
     chatDisplay.appendChild(newNotif);
 
     let pInNotif = document.createElement("p");
-    pInNotif.innerHTML = "\"" + name + "\"" + " joined";
+    pInNotif.innerHTML = "\"" + data.name + "\"" + " joined";
     newNotif.appendChild(pInNotif);
 
     chatDisplay.scrollTo(0, chatDisplay.scrollHeight);
@@ -118,7 +129,7 @@ socket.on('msg-receive', data => {
 
 
 // receiving event from app.js when new user disconnects
-socket.on('user-disconnected', (name) => {
+socket.on('who-disconnected', name => {
     let newNotif = document.createElement("div");
     newNotif.classList.add("msgs");
     newNotif.classList.add("updates");
@@ -129,5 +140,13 @@ socket.on('user-disconnected', (name) => {
     newNotif.appendChild(pInNotif);
 
     chatDisplay.scrollTo(0, chatDisplay.scrollHeight);
+});
+
+
+
+
+// Show users object length when disconnected
+socket.on('user-disconnected', (activeUsers) => {
+    newDiv.innerHTML = "Active Users: " + activeUsers;
 });
 
