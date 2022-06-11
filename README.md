@@ -9,7 +9,7 @@ A webchat application using socket.io
 git clone https://github.com/pratham891/webchat-application.git
 ```
 
-#### Enter the 'Weather-App' directory
+#### Enter the directory
 ```
 cd "webchat-application"
 ```
