@@ -151,3 +151,67 @@ body {
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
+
+
+
+
+/* CHAT DISPLAY SCROLL BAR STYLING */
+#chat-display::-webkit-scrollbar {
+    width: .5em;
+}
+
+#chat-display::-webkit-scrollbar-thumb {
+    background: #0d0d0d6b;
+    border-radius: 10vw;
+}
+
+#chat-display::-webkit-scrollbar-track {
+    background: #fef9f8;
+    border-radius: 100vw;
+    margin-block: .2em;
+}
+
+#chat-display::-webkit-scrollbar-thumb:hover {
+    background: #0d0d0dd2;
+    border-radius: 10vw;
+}
+
+/* FOR BROWSERS LIKE FIREFOX */
+#chat-display {
+    scrollbar-width: thin;
+    scrollbar-color: grey white;
+}
+
+
+
+
+/* Making chat website responsive */
+@media all and (max-width: 800px) {
+    #container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #chat-display {
+        width: 98vw;
+        height: 85vh;
+    }
+
+    #input {
+        width: 70vw;
+    }
+
+    #send-button {
+        width: 20vw;
+    }
+
+    .new-div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

@@ -9,8 +9,12 @@ let name = prompt("Your name");
 const infinity = Math.pow(10, 1000);
 
 let newDiv = document.createElement("div");
+newDiv.classList.add("new-div");
 container.insertBefore(newDiv, chatDisplay);
 newDiv.style.padding = "5px";
+newDiv.style.display = "flex";
+newDiv.style.justifyContent = "space-between";
+newDiv.style.alignItems = "center";
 
 
 
@@ -25,7 +29,14 @@ socket.emit('new-user-joined', name);
 
 // receiving event from app.js when joined the chat
 socket.on('self-joined', data => {
-    newDiv.innerHTML = "Active Users: " + data.activeUsers;
+    let newActDiv = document.createElement("div");
+    newActDiv.innerHTML = "Active Users: " + data.activeUsers;
+    newDiv.appendChild(newActDiv);
+
+
+    let selfName = document.createElement("div");
+    selfName.innerHTML = "You: " + data.name;
+    newDiv.appendChild(selfName);
 
 
 
@@ -52,7 +63,9 @@ socket.on('self-joined', data => {
 
 // receiving event from app.js when new user joined
 socket.on('user-joined', data => {
-    newDiv.innerHTML = "Active Users: " + data.activeUsers;
+    let newActDiv = document.createElement("div");
+    newActDiv.innerHTML = "Active Users: " + data.activeUsers;
+    newDiv.appendChild(newActDiv);
 
     let newNotif = document.createElement("div");
     newNotif.classList.add("msgs");
@@ -147,6 +160,8 @@ socket.on('who-disconnected', name => {
 
 // Show users object length when disconnected
 socket.on('user-disconnected', (activeUsers) => {
-    newDiv.innerHTML = "Active Users: " + activeUsers;
+    let newActDiv = document.createElement("div");
+    newActDiv.innerHTML = "Active Users: " + data.activeUsers;
+    newDiv.appendChild(newActDiv);
 });
 
