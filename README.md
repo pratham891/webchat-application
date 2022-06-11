@@ -2,8 +2,8 @@
 A webchat application using socket.io
 
 
-## For running the server locally
 
+## For running the server locally
 #### Clone the repository in your local machine
 ```
 git clone https://github.com/pratham891/webchat-application.git
