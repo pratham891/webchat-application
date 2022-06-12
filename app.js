@@ -44,6 +44,7 @@ io.on("connection", (socket) => {
         delete users[socket.id];
 
         socket.broadcast.emit('user-disconnected', Object.keys(users).length);
+        console.log(Object.keys(users).length);
 
         console.log("updated users list:");
         console.log(users);
